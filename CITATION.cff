@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: >-
+  If you use the replay corpus, measurements, visualizations, or derived
+  artifacts, please cite this project using the metadata below.
+type: dataset
+title: "Qwenception: Qwen3.6-27B Diverging Universes"
+authors:
+  - name: "Three"
+version: "1.0.0"
+date-released: "2026-08-29"
+repository-artifact: "https://github.com/Pow3rTool/Qwenception"
+url: "https://github.com/Pow3rTool/Qwenception"
+license: "CC-BY-NC-SA-4.0"
+keywords:
+  - Qwen
+  - GPU inference
+  - attention backends
+  - numerical reproducibility
+  - counterfactual replay

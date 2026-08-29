@@ -1,0 +1,825 @@
+{
+  "schema_version": 1,
+  "datasets": 4,
+  "cases": 34,
+  "shards": [
+    {
+      "dataset": "sp01",
+      "case_id": "h200-triton-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-flashinfer-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-fa2-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-triton-fp8-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-triton-w8a16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-triton-bf16-fp8kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "h200-triton-bf16-int4kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-flashinfer-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-fa2-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-fp8-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 43
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-w8a16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-nvfp4-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-bf16-fp8kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "b200-triton-bf16-int4kv",
+      "positions": 411,
+      "recorded_mismatches": 36
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-flashinfer-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-fa2-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-fp8-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-w8a16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-awq-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-nvfp4-fallback-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 42
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-bf16-fp8kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm120-triton-bf16-int4kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-flashinfer-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-fa2-bf16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 41
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-fp8-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 40
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-w8a16-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-awq-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-nvfp4-r1-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-nvfp4-r2-bf16kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-bf16-fp8kv",
+      "positions": 411,
+      "recorded_mismatches": 39
+    },
+    {
+      "dataset": "sp01",
+      "case_id": "sm121-triton-bf16-int4kv",
+      "positions": 411,
+      "recorded_mismatches": 38
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-triton-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-flashinfer-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 217
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-fa2-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-triton-fp8-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-triton-w8a16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 219
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-triton-bf16-fp8kv",
+      "positions": 2775,
+      "recorded_mismatches": 217
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "h200-triton-bf16-int4kv",
+      "positions": 2775,
+      "recorded_mismatches": 223
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 218
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-flashinfer-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 220
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-fa2-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 215
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-fp8-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 212
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-w8a16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 217
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-nvfp4-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 219
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-bf16-fp8kv",
+      "positions": 2775,
+      "recorded_mismatches": 222
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "b200-triton-bf16-int4kv",
+      "positions": 2775,
+      "recorded_mismatches": 225
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 218
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-flashinfer-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 212
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-fa2-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 214
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-fp8-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 219
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-w8a16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 217
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-awq-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 221
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-nvfp4-fallback-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 221
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-bf16-fp8kv",
+      "positions": 2775,
+      "recorded_mismatches": 220
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm120-triton-bf16-int4kv",
+      "positions": 2775,
+      "recorded_mismatches": 222
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 212
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-flashinfer-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 215
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-fa2-bf16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 218
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-fp8-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 219
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-w8a16-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 214
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-awq-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 222
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-nvfp4-r1-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 219
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-nvfp4-r2-bf16kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-bf16-fp8kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp03",
+      "case_id": "sm121-triton-bf16-int4kv",
+      "positions": 2775,
+      "recorded_mismatches": 216
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-triton-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-flashinfer-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-fa2-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 153
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-triton-fp8-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 154
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-triton-w8a16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-triton-bf16-fp8kv",
+      "positions": 1535,
+      "recorded_mismatches": 156
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "h200-triton-bf16-int4kv",
+      "positions": 1535,
+      "recorded_mismatches": 153
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-flashinfer-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 153
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-fa2-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-fp8-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 147
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-w8a16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 150
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-nvfp4-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 158
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-bf16-fp8kv",
+      "positions": 1535,
+      "recorded_mismatches": 157
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "b200-triton-bf16-int4kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 154
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-flashinfer-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-fa2-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-fp8-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 154
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-w8a16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-awq-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 157
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-nvfp4-fallback-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 156
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-bf16-fp8kv",
+      "positions": 1535,
+      "recorded_mismatches": 153
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm120-triton-bf16-int4kv",
+      "positions": 1535,
+      "recorded_mismatches": 157
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-flashinfer-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-fa2-bf16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 154
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-fp8-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 151
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-w8a16-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 153
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-awq-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 156
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-nvfp4-r1-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 158
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-nvfp4-r2-bf16kv",
+      "positions": 1535,
+      "recorded_mismatches": 158
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-bf16-fp8kv",
+      "positions": 1535,
+      "recorded_mismatches": 154
+    },
+    {
+      "dataset": "sp04",
+      "case_id": "sm121-triton-bf16-int4kv",
+      "positions": 1535,
+      "recorded_mismatches": 152
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-triton-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 486
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-flashinfer-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 481
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-fa2-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-triton-fp8-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 506
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-triton-w8a16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-triton-bf16-fp8kv",
+      "positions": 4339,
+      "recorded_mismatches": 500
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "h200-triton-bf16-int4kv",
+      "positions": 4339,
+      "recorded_mismatches": 486
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 482
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-flashinfer-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 481
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-fa2-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 484
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-fp8-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-w8a16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-nvfp4-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 497
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-bf16-fp8kv",
+      "positions": 4339,
+      "recorded_mismatches": 500
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "b200-triton-bf16-int4kv",
+      "positions": 4339,
+      "recorded_mismatches": 497
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-flashinfer-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 489
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-fa2-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 486
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-fp8-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 491
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-w8a16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 488
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-awq-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 518
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-nvfp4-fallback-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 493
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-bf16-fp8kv",
+      "positions": 4339,
+      "recorded_mismatches": 496
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm120-triton-bf16-int4kv",
+      "positions": 4339,
+      "recorded_mismatches": 492
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 481
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-flashinfer-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 492
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-fa2-bf16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 479
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-fp8-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 492
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-w8a16-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 487
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-awq-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 512
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-nvfp4-r1-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 490
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-nvfp4-r2-bf16kv",
+      "positions": 4339,
+      "recorded_mismatches": 492
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-bf16-fp8kv",
+      "positions": 4339,
+      "recorded_mismatches": 496
+    },
+    {
+      "dataset": "sp06",
+      "case_id": "sm121-triton-bf16-int4kv",
+      "positions": 4339,
+      "recorded_mismatches": 494
+    }
+  ],
+  "branch_shards": 92,
+  "source_paths_embedded": false
+}

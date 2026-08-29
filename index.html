@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>QwenFight scenario explorer</title>
+    <link rel="stylesheet" href="styles.css?v=8">
+  </head>
+  <body>
+    <header class="hero">
+      <h1 id="page-title">Qwenception</h1>
+      <p id="subtitle" class="dek">Pick a baseline inference run, add as many as four alternatives, and replay what every run wanted to emit from the identical recorded prefix.</p>
+      <div id="summary" class="summary" aria-live="polite"></div>
+    </header>
+
+    <section class="control-shell" aria-label="Scenario controls">
+      <section class="baseline-section" aria-labelledby="baseline-heading">
+        <div class="baseline-intro">
+          <div>
+            <p class="control-step">Step 1 · establish the reference universe</p>
+            <h2 id="baseline-heading">Choose your baseline hardware</h2>
+            <p>Every comparison starts from one canonical Triton, BF16-weight, BF16-key/value-cache run.</p>
+          </div>
+          <label class="baseline-menu">Baseline menu <select id="baseline"></select></label>
+        </div>
+        <div id="baseline-cards" class="baseline-cards" role="radiogroup" aria-label="Baseline hardware"></div>
+      </section>
+      <div class="primary-controls">
+        <label>Prompt dataset <select id="dataset"></select></label>
+        <label class="range-control">Output range <select id="range"></select></label>
+        <label>Show <select id="filter">
+          <option value="all">Every recorded token</option>
+          <option value="flips">Only disagreements with baseline</option>
+          <option value="recorded">Only baseline vs recorded disagreements</option>
+          <option value="scatter">Only 3+ distinct winners</option>
+        </select></label>
+        <label>Tie rule <select id="tie-rule">
+          <option value="argmax" selected>Sampler argmax</option>
+          <option value="legacy-topk">Published legacy top-k</option>
+        </select></label>
+        <label class="check"><input id="compact" type="checkbox" checked> Collapse agreement runs</label>
+        <label class="check"><input id="focus-fork" type="checkbox" checked> Keep active fork in view</label>
+      </div>
+      <div class="action-controls">
+        <button id="play" type="button">▶ Play outputs</button>
+        <button id="reset" type="button">↺ Restart</button>
+        <label>Speed <select id="speed">
+          <option value="220">Slow</option>
+          <option value="80" selected>Medium</option>
+          <option value="24">Fast</option>
+        </select></label>
+        <button id="previous" type="button">← Previous flip</button>
+        <button id="next" type="button">Next flip →</button>
+        <button id="copy-link" type="button">Copy link</button>
+        <button id="export-json" type="button">Download JSON</button>
+        <button id="export-csv" type="button">Download CSV</button>
+        <span id="status" class="status">Loading catalog…</span>
+      </div>
+      <section id="playback-stage" class="playback-stage" aria-live="polite">
+        <div class="playback-stage-head">
+          <strong>Recorded path playback</strong>
+          <span id="playback-position">Choose a prompt dataset, then press Play outputs.</span>
+        </div>
+        <div id="playback-tokens" class="playback-tokens">
+          <span class="playback-empty">The retained continuation will appear here one token at a time.</span>
+        </div>
+      </section>
+      <details class="scenario-drawer" open>
+        <summary>Available comparisons for this starting point <span id="selection-count"></span></summary>
+        <p id="comparison-context" class="comparison-context"></p>
+        <div class="scenario-tools">
+          <label>Find a run <input id="scenario-search" type="search" placeholder="H200, FlashInfer, INT4…"></label>
+          <label>Hardware <select id="hardware-filter"><option value="">All hardware</option></select></label>
+          <label>Change type <select id="intervention-filter"><option value="">All changes</option></select></label>
+        </div>
+        <div id="scenario-picker" class="scenario-picker"></div>
+      </details>
+    </section>
+
+    <section id="method-note" class="method-note"></section>
+    <section id="legend" class="legend"></section>
+    <main>
+      <div class="head-row"><span>Position</span><span>Recorded output</span><span>Measured next-token predictions</span></div>
+      <div id="stream" class="stream"></div>
+    </main>
+    <footer>
+      Every prediction lane is a retained full-vocabulary measurement from the same recorded prefix. At captured forks, a counterfactual lane recursively generates from that run’s winning token, then is discarded so the recorded path can resume. Counterfactual tool calls were never executed: the viewer can grade their structure, but cannot invent a runtime result. “Probability” is each run’s own winning-token probability. Full-distribution KL is intentionally absent unless a pairwise artifact was precomputed—it cannot be reconstructed from compact Top-1 shards. Visible whitespace: · space, ↵ newline, ⇥ tab.
+      <span id="privacy-note"></span>
+    </footer>
+
+    <script>window.QWENFIGHT_DATASETS = {}; window.QWENFIGHT_RUNS = {}; window.QWENFIGHT_BRANCHES = {};</script>
+    <script src="catalog.js?v=9"></script>
+  <script src="app.js?v=8"></script>
+  </body>
+</html>

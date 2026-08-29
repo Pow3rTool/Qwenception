@@ -1,0 +1,1598 @@
+{
+  "schema_version": 1,
+  "title": "Qwen3.6-27B · Diverging Universes",
+  "subtitle": "Choose one canonical BF16/Triton hardware run as the starting point, add valid single-axis comparisons, and replay each measured fork into its retained 100-token counterfactual future.",
+  "method": "Every next-token result uses the identical recorded prefix. Cross-hardware choices hold Triton attention, BF16 weights, and BF16 key/value cache fixed. Same-hardware choices change the named attention, weight, or key/value-cache coordinate.",
+  "max_comparisons": 4,
+  "baseline_ids": [
+    "h200-triton-bf16-bf16kv",
+    "b200-triton-bf16-bf16kv",
+    "sm120-triton-bf16-bf16kv",
+    "sm121-triton-bf16-bf16kv"
+  ],
+  "comparison_matrix": [
+    {
+      "baseline_id": "h200-triton-bf16-bf16kv",
+      "comparisons": [
+        {
+          "case_id": "b200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 11,
+            "sp04": 4,
+            "sp06": 28
+          }
+        },
+        {
+          "case_id": "sm120-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 10,
+            "sp04": 6,
+            "sp06": 27
+          }
+        },
+        {
+          "case_id": "sm121-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 0,
+            "sp03": 9,
+            "sp04": 5,
+            "sp06": 26
+          }
+        },
+        {
+          "case_id": "h200-flashinfer-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 2,
+            "sp03": 11,
+            "sp04": 5,
+            "sp06": 27
+          }
+        },
+        {
+          "case_id": "h200-fa2-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 2,
+            "sp03": 13,
+            "sp04": 1,
+            "sp06": 26
+          }
+        },
+        {
+          "case_id": "h200-triton-fp8-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Official 8-bit floating-point weights provide the cleanest reduced-precision weight comparison on this platform.",
+          "flip_counts": {
+            "sp01": 11,
+            "sp03": 45,
+            "sp04": 16,
+            "sp06": 94
+          }
+        },
+        {
+          "case_id": "h200-triton-w8a16-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Tests 8-bit weights with 16-bit activations against the platform's BF16 baseline.",
+          "flip_counts": {
+            "sp01": 6,
+            "sp03": 18,
+            "sp04": 8,
+            "sp06": 38
+          }
+        },
+        {
+          "case_id": "h200-triton-bf16-fp8kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 5,
+            "sp03": 26,
+            "sp04": 14,
+            "sp06": 61
+          }
+        },
+        {
+          "case_id": "h200-triton-bf16-int4kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 6,
+            "sp03": 48,
+            "sp04": 15,
+            "sp06": 84
+          }
+        }
+      ]
+    },
+    {
+      "baseline_id": "b200-triton-bf16-bf16kv",
+      "comparisons": [
+        {
+          "case_id": "h200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 11,
+            "sp04": 4,
+            "sp06": 28
+          }
+        },
+        {
+          "case_id": "sm120-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 2,
+            "sp03": 15,
+            "sp04": 6,
+            "sp06": 21
+          }
+        },
+        {
+          "case_id": "sm121-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 15,
+            "sp04": 3,
+            "sp06": 28
+          }
+        },
+        {
+          "case_id": "b200-flashinfer-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 3,
+            "sp03": 12,
+            "sp04": 5,
+            "sp06": 24
+          }
+        },
+        {
+          "case_id": "b200-fa2-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 12,
+            "sp04": 3,
+            "sp06": 24
+          }
+        },
+        {
+          "case_id": "b200-triton-fp8-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Official 8-bit floating-point weights provide the cleanest reduced-precision weight comparison on this platform.",
+          "flip_counts": {
+            "sp01": 8,
+            "sp03": 33,
+            "sp04": 15,
+            "sp06": 69
+          }
+        },
+        {
+          "case_id": "b200-triton-w8a16-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Tests 8-bit weights with 16-bit activations against the platform's BF16 baseline.",
+          "flip_counts": {
+            "sp01": 4,
+            "sp03": 16,
+            "sp04": 3,
+            "sp06": 39
+          }
+        },
+        {
+          "case_id": "b200-triton-nvfp4-bf16kv",
+          "axis": "weights",
+          "priority": "P1",
+          "rationale": "Native mixed FP8/NVFP4 checkpoint comparison available on this platform.",
+          "flip_counts": {
+            "sp01": 8,
+            "sp03": 75,
+            "sp04": 31,
+            "sp06": 140
+          }
+        },
+        {
+          "case_id": "b200-triton-bf16-fp8kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 4,
+            "sp03": 27,
+            "sp04": 16,
+            "sp06": 57
+          }
+        },
+        {
+          "case_id": "b200-triton-bf16-int4kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 9,
+            "sp03": 34,
+            "sp04": 18,
+            "sp06": 100
+          }
+        }
+      ]
+    },
+    {
+      "baseline_id": "sm120-triton-bf16-bf16kv",
+      "comparisons": [
+        {
+          "case_id": "h200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 10,
+            "sp04": 6,
+            "sp06": 27
+          }
+        },
+        {
+          "case_id": "b200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 2,
+            "sp03": 15,
+            "sp04": 6,
+            "sp06": 21
+          }
+        },
+        {
+          "case_id": "sm121-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 11,
+            "sp04": 3,
+            "sp06": 31
+          }
+        },
+        {
+          "case_id": "sm120-flashinfer-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 3,
+            "sp03": 10,
+            "sp04": 6,
+            "sp06": 28
+          }
+        },
+        {
+          "case_id": "sm120-fa2-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 2,
+            "sp03": 16,
+            "sp04": 4,
+            "sp06": 23
+          }
+        },
+        {
+          "case_id": "sm120-triton-fp8-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Official 8-bit floating-point weights provide the cleanest reduced-precision weight comparison on this platform.",
+          "flip_counts": {
+            "sp01": 8,
+            "sp03": 33,
+            "sp04": 13,
+            "sp06": 79
+          }
+        },
+        {
+          "case_id": "sm120-triton-w8a16-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Tests 8-bit weights with 16-bit activations against the platform's BF16 baseline.",
+          "flip_counts": {
+            "sp01": 5,
+            "sp03": 17,
+            "sp04": 7,
+            "sp06": 35
+          }
+        },
+        {
+          "case_id": "sm120-triton-awq-bf16kv",
+          "axis": "weights",
+          "priority": "P1",
+          "rationale": "Activation-aware 4-bit weight quantization is valuable, but it is not available on every hardware family.",
+          "flip_counts": {
+            "sp01": 14,
+            "sp03": 51,
+            "sp04": 28,
+            "sp06": 135
+          }
+        },
+        {
+          "case_id": "sm120-triton-bf16-fp8kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 4,
+            "sp03": 14,
+            "sp04": 17,
+            "sp06": 24
+          }
+        },
+        {
+          "case_id": "sm120-triton-bf16-int4kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 10,
+            "sp03": 37,
+            "sp04": 10,
+            "sp06": 87
+          }
+        }
+      ]
+    },
+    {
+      "baseline_id": "sm121-triton-bf16-bf16kv",
+      "comparisons": [
+        {
+          "case_id": "h200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 0,
+            "sp03": 9,
+            "sp04": 5,
+            "sp06": 26
+          }
+        },
+        {
+          "case_id": "b200-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 15,
+            "sp04": 3,
+            "sp06": 28
+          }
+        },
+        {
+          "case_id": "sm120-triton-bf16-bf16kv",
+          "axis": "hardware",
+          "priority": "P0",
+          "rationale": "Changes hardware architecture/runtime while holding Triton attention, BF16 weights, and BF16 key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 11,
+            "sp04": 3,
+            "sp06": 31
+          }
+        },
+        {
+          "case_id": "sm121-flashinfer-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 1,
+            "sp03": 11,
+            "sp04": 3,
+            "sp06": 33
+          }
+        },
+        {
+          "case_id": "sm121-fa2-bf16-bf16kv",
+          "axis": "attention",
+          "priority": "P0",
+          "rationale": "Changes the full-attention implementation while holding hardware, weights, and key/value cache fixed.",
+          "flip_counts": {
+            "sp01": 3,
+            "sp03": 12,
+            "sp04": 4,
+            "sp06": 38
+          }
+        },
+        {
+          "case_id": "sm121-triton-fp8-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Official 8-bit floating-point weights provide the cleanest reduced-precision weight comparison on this platform.",
+          "flip_counts": {
+            "sp01": 6,
+            "sp03": 35,
+            "sp04": 17,
+            "sp06": 72
+          }
+        },
+        {
+          "case_id": "sm121-triton-w8a16-bf16kv",
+          "axis": "weights",
+          "priority": "P0",
+          "rationale": "Tests 8-bit weights with 16-bit activations against the platform's BF16 baseline.",
+          "flip_counts": {
+            "sp01": 3,
+            "sp03": 19,
+            "sp04": 4,
+            "sp06": 53
+          }
+        },
+        {
+          "case_id": "sm121-triton-awq-bf16kv",
+          "axis": "weights",
+          "priority": "P1",
+          "rationale": "Activation-aware 4-bit weight quantization is valuable, but it is not available on every hardware family.",
+          "flip_counts": {
+            "sp01": 11,
+            "sp03": 51,
+            "sp04": 30,
+            "sp06": 142
+          }
+        },
+        {
+          "case_id": "sm121-triton-nvfp4-r1-bf16kv",
+          "axis": "weights",
+          "priority": "P1",
+          "rationale": "First retained SM121 mixed FP8/NVFP4 cold state; high-value native low-bit evidence with a repeatability caveat.",
+          "flip_counts": {
+            "sp01": 13,
+            "sp03": 66,
+            "sp04": 35,
+            "sp06": 146
+          }
+        },
+        {
+          "case_id": "sm121-triton-bf16-fp8kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 3,
+            "sp03": 24,
+            "sp04": 13,
+            "sp06": 52
+          }
+        },
+        {
+          "case_id": "sm121-triton-bf16-int4kv",
+          "axis": "kv_cache",
+          "priority": "P0",
+          "rationale": "Changes only key/value-cache precision; the model weights and attention selection remain fixed.",
+          "flip_counts": {
+            "sp01": 8,
+            "sp03": 34,
+            "sp04": 9,
+            "sp06": 83
+          }
+        }
+      ]
+    }
+  ],
+  "comparison_policy": {
+    "name": "Frozen P0/P1 publication matrix",
+    "summary": "Cross-hardware comparisons change only the platform/runtime coordinate. Same-hardware comparisons change one named attention or precision coordinate. P2 diagnostics are excluded.",
+    "branch_token_cap": 100,
+    "tool_execution": "not-executed-runtime-outcome-unknown",
+    "limitations": [
+      "A measured Top-1 disagreement is a fork root, not proof that either winner is objectively correct.",
+      "Length-limited 100-token branches are incomplete/indecisive, not failures.",
+      "Generated tool calls were structurally inspected but never executed.",
+      "SM121 has one-step logits in this release, but no matching P0/P1 recursive branch capture."
+    ]
+  },
+  "default_dataset": "sp06",
+  "tie_rules": {
+    "argmax": "Sampler argmax: the first token ID at the maximal logit, aligned with the current comparator and greedy sampler.",
+    "legacy-topk": "Published legacy top-k: reproduces the winner selection used by the earlier replay artifacts at exact BF16 ties."
+  },
+  "privacy": "",
+  "cases": [
+    {
+      "id": "h200-triton-bf16-bf16kv",
+      "label": "H200 / SM90 · Triton · BF16 weights · BF16 KV",
+      "short_label": "H200 · Triton · BF16/BF16KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Hardware / runtime",
+      "color": "#e45756",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-flashinfer-bf16-bf16kv",
+      "label": "H200 / SM90 · FlashInfer · BF16 weights · BF16 KV",
+      "short_label": "H200 · FlashInfer · BF16/BF16KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "FlashInfer",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#ff8a65",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-fa2-bf16-bf16kv",
+      "label": "H200 / SM90 · explicit FlashAttention 2 · BF16 weights · BF16 KV",
+      "short_label": "H200 · FA2 · BF16/BF16KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "FlashAttention 2",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#ffb74d",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-triton-fp8-bf16kv",
+      "label": "H200 / SM90 · Triton · official FP8 weights · BF16 KV",
+      "short_label": "H200 · Triton · FP8/BF16KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "Triton",
+      "weights": "Official FP8",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#f06292",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-triton-w8a16-bf16kv",
+      "label": "H200 / SM90 · Triton · W8A16 weights · BF16 KV",
+      "short_label": "H200 · Triton · W8A16/BF16KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "Triton",
+      "weights": "W8A16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86 · Machete",
+      "intervention": "Weight precision",
+      "color": "#ec407a",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-triton-bf16-fp8kv",
+      "label": "H200 / SM90 · Triton · BF16 weights · FP8 KV",
+      "short_label": "H200 · Triton · BF16/FP8KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "FP8",
+      "runtime": "pinned x86",
+      "intervention": "KV precision",
+      "color": "#ab47bc",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "h200-triton-bf16-int4kv",
+      "label": "H200 / SM90 · Triton · BF16 weights · dynamic INT4 per-token/head KV",
+      "short_label": "H200 · Triton · BF16/INT4KV",
+      "hardware": "H200",
+      "architecture": "SM90",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "INT4 per-token/head",
+      "runtime": "pinned x86",
+      "intervention": "KV precision",
+      "color": "#7e57c2",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-bf16-bf16kv",
+      "label": "B200 / SM100 · Triton · BF16 weights · BF16 KV",
+      "short_label": "B200 · Triton · BF16/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Hardware / runtime",
+      "color": "#43a047",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-flashinfer-bf16-bf16kv",
+      "label": "B200 / SM100 · FlashInfer/TRTLLM-prefill · BF16 weights · BF16 KV",
+      "short_label": "B200 · FlashInfer · BF16/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "FlashInfer / TRTLLM prefill",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#66bb6a",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-fa2-bf16-bf16kv",
+      "label": "B200 / SM100 · explicit FlashAttention 2 · BF16 weights · BF16 KV",
+      "short_label": "B200 · FA2 · BF16/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "FlashAttention 2",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#9ccc65",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-fp8-bf16kv",
+      "label": "B200 / SM100 · Triton · official FP8 weights · BF16 KV",
+      "short_label": "B200 · Triton · FP8/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "Official FP8",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#26a69a",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-w8a16-bf16kv",
+      "label": "B200 / SM100 · Triton · W8A16 weights · BF16 KV",
+      "short_label": "B200 · Triton · W8A16/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "W8A16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86 · Marlin",
+      "intervention": "Weight precision",
+      "color": "#00897b",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-nvfp4-bf16kv",
+      "label": "B200 / SM100 · Triton · mixed FP8/W4A16-NVFP4 checkpoint · BF16 KV",
+      "short_label": "B200 · Triton · mixed NVFP4/BF16KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "Mixed FP8/W4A16-NVFP4",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#00acc1",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-bf16-fp8kv",
+      "label": "B200 / SM100 · Triton · BF16 weights · FP8 KV",
+      "short_label": "B200 · Triton · BF16/FP8KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "FP8",
+      "runtime": "pinned x86",
+      "intervention": "KV precision",
+      "color": "#29b6f6",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "b200-triton-bf16-int4kv",
+      "label": "B200 / SM100 · Triton · BF16 weights · dynamic INT4 per-token/head KV",
+      "short_label": "B200 · Triton · BF16/INT4KV",
+      "hardware": "B200",
+      "architecture": "SM100",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "INT4 per-token/head",
+      "runtime": "pinned x86 · _attn_packed",
+      "intervention": "KV precision",
+      "color": "#42a5f5",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-bf16-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · BF16 weights · BF16 KV",
+      "short_label": "SM120 · Triton · BF16/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Hardware / runtime",
+      "color": "#1e88e5",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-flashinfer-bf16-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · FlashInfer · BF16 weights · BF16 KV",
+      "short_label": "SM120 · FlashInfer · BF16/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "FlashInfer",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#42a5f5",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-fa2-bf16-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · explicit FlashAttention 2 · BF16 weights · BF16 KV",
+      "short_label": "SM120 · FA2 · BF16/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "FlashAttention 2",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Attention backend",
+      "color": "#64b5f6",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-fp8-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · official FP8 weights · BF16 KV",
+      "short_label": "SM120 · Triton · FP8/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "Official FP8",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#5c6bc0",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-w8a16-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · W8A16 weights · BF16 KV",
+      "short_label": "SM120 · Triton · W8A16/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "W8A16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#7e57c2",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-awq-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · AWQ W4A16 weights · BF16 KV",
+      "short_label": "SM120 · Triton · AWQ/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "AWQ W4A16",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#9575cd",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-nvfp4-fallback-bf16kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · NVFP4 checkpoint / Marlin W4A16 fallback · BF16 KV",
+      "short_label": "SM120 · Triton · NVFP4 fallback/BF16KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "NVFP4 checkpoint / W4A16 fallback",
+      "kv_cache": "BF16",
+      "runtime": "pinned x86",
+      "intervention": "Weight precision",
+      "color": "#ba68c8",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-bf16-fp8kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · BF16 weights · dynamic INT8 per-token/head KV",
+      "short_label": "SM120 · Triton · BF16/INT8KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "INT8 per-token/head",
+      "runtime": "pinned x86",
+      "intervention": "KV precision",
+      "color": "#26c6da",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm120-triton-bf16-int4kv",
+      "label": "RTX PRO 6000 / SM120 · Triton · BF16 weights · dynamic INT4 per-token/head KV",
+      "short_label": "SM120 · Triton · BF16/INT4KV",
+      "hardware": "RTX PRO 6000",
+      "architecture": "SM120",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "INT4 per-token/head",
+      "runtime": "pinned x86",
+      "intervention": "KV precision",
+      "color": "#4dd0e1",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-bf16-bf16kv",
+      "label": "GB10 / SM121 · Triton · BF16 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · BF16/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Hardware / runtime",
+      "color": "#8e24aa",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-flashinfer-bf16-bf16kv",
+      "label": "GB10 / SM121 · FlashInfer · BF16 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · FlashInfer · BF16/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "FlashInfer",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Attention backend",
+      "color": "#ab47bc",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-fa2-bf16-bf16kv",
+      "label": "GB10 / SM121 · explicit FlashAttention 2 · BF16 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · FA2 · BF16/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "FlashAttention 2",
+      "weights": "BF16",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Attention backend",
+      "color": "#ce93d8",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-fp8-bf16kv",
+      "label": "GB10 / SM121 · Triton · official FP8 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · FP8/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "Official FP8",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Weight precision",
+      "color": "#d81b60",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-w8a16-bf16kv",
+      "label": "GB10 / SM121 · Triton · W8A16 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · W8A16/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "W8A16",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Weight precision",
+      "color": "#c2185b",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-awq-bf16kv",
+      "label": "GB10 / SM121 · Triton · AWQ W4A16 weights · BF16 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · AWQ/BF16KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "AWQ W4A16",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64",
+      "intervention": "Weight precision",
+      "color": "#ad1457",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-nvfp4-r1-bf16kv",
+      "label": "GB10 / SM121 · Triton · mixed FP8/NVFP4 weights · BF16 KV · cold state 1",
+      "short_label": "SM121* · NVFP4 · cold state 1",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "Mixed FP8/NVFP4",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64 · cold state 1",
+      "intervention": "Cold-start state",
+      "color": "#f4511e",
+      "notes": "One of two complete but non-bitwise-repeatable cold-start states.",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-nvfp4-r2-bf16kv",
+      "label": "GB10 / SM121 · Triton · mixed FP8/NVFP4 weights · BF16 KV · cache replay state 2",
+      "short_label": "SM121* · NVFP4 · cache state 2",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "Mixed FP8/NVFP4",
+      "kv_cache": "BF16",
+      "runtime": "rolling ARM64 · cache replay state 2",
+      "intervention": "Cold-start state",
+      "color": "#fb8c00",
+      "notes": "The second retained deterministic state from a nonrepeatable cold-start pair.",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-bf16-fp8kv",
+      "label": "GB10 / SM121 · Triton · BF16 weights · FP8 KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · BF16/FP8KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "FP8",
+      "runtime": "rolling ARM64",
+      "intervention": "KV precision",
+      "color": "#6d4c41",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    },
+    {
+      "id": "sm121-triton-bf16-int4kv",
+      "label": "GB10 / SM121 · Triton · BF16 weights · dynamic INT4 per-token/head KV · rolling ARM64 runtime",
+      "short_label": "SM121* · Triton · BF16/INT4KV",
+      "hardware": "GB10",
+      "architecture": "SM121",
+      "attention": "Triton",
+      "weights": "BF16",
+      "kv_cache": "INT4 per-token/head",
+      "runtime": "rolling ARM64",
+      "intervention": "KV precision",
+      "color": "#8d6e63",
+      "datasets": [
+        "sp01",
+        "sp03",
+        "sp04",
+        "sp06"
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "id": "sp01",
+      "label": "SP01 · 411 assistant-output positions",
+      "positions": 411,
+      "default_baseline": "h200-triton-bf16-bf16kv",
+      "default_comparisons": [
+        "b200-triton-bf16-bf16kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm121-triton-bf16-bf16kv"
+      ],
+      "default_range": 0,
+      "cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-nvfp4-fallback-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-nvfp4-r2-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
+      ],
+      "core": "data/sp01/core.js",
+      "run_root": "data/sp01/runs",
+      "branch_root": "data/sp01/branches",
+      "branch_cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv"
+      ],
+      "branch_positions": 24,
+      "branch_paths": 168,
+      "branch_counts": {
+        "h200-triton-bf16-bf16kv": 16,
+        "h200-flashinfer-bf16-bf16kv": 2,
+        "h200-fa2-bf16-bf16kv": 2,
+        "h200-triton-fp8-bf16kv": 11,
+        "h200-triton-w8a16-bf16kv": 6,
+        "h200-triton-bf16-fp8kv": 5,
+        "h200-triton-bf16-int4kv": 6,
+        "b200-triton-bf16-bf16kv": 17,
+        "b200-flashinfer-bf16-bf16kv": 3,
+        "b200-fa2-bf16-bf16kv": 1,
+        "b200-triton-fp8-bf16kv": 8,
+        "b200-triton-w8a16-bf16kv": 4,
+        "b200-triton-nvfp4-bf16kv": 8,
+        "b200-triton-bf16-fp8kv": 4,
+        "b200-triton-bf16-int4kv": 9,
+        "sm120-triton-bf16-bf16kv": 20,
+        "sm120-flashinfer-bf16-bf16kv": 3,
+        "sm120-fa2-bf16-bf16kv": 2,
+        "sm120-triton-fp8-bf16kv": 8,
+        "sm120-triton-w8a16-bf16kv": 5,
+        "sm120-triton-awq-bf16kv": 14,
+        "sm120-triton-bf16-fp8kv": 4,
+        "sm120-triton-bf16-int4kv": 10
+      }
+    },
+    {
+      "id": "sp03",
+      "label": "SP03 · 2,775 assistant-output positions",
+      "positions": 2775,
+      "default_baseline": "h200-triton-bf16-bf16kv",
+      "default_comparisons": [
+        "b200-triton-bf16-bf16kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm121-triton-bf16-bf16kv"
+      ],
+      "default_range": 0,
+      "cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-nvfp4-fallback-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-nvfp4-r2-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
+      ],
+      "core": "data/sp03/core.js",
+      "run_root": "data/sp03/runs",
+      "branch_root": "data/sp03/branches",
+      "branch_cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv"
+      ],
+      "branch_positions": 132,
+      "branch_paths": 824,
+      "branch_counts": {
+        "h200-triton-bf16-bf16kv": 83,
+        "h200-flashinfer-bf16-bf16kv": 11,
+        "h200-fa2-bf16-bf16kv": 13,
+        "h200-triton-fp8-bf16kv": 45,
+        "h200-triton-w8a16-bf16kv": 18,
+        "h200-triton-bf16-fp8kv": 26,
+        "h200-triton-bf16-int4kv": 48,
+        "b200-triton-bf16-bf16kv": 106,
+        "b200-flashinfer-bf16-bf16kv": 12,
+        "b200-fa2-bf16-bf16kv": 12,
+        "b200-triton-fp8-bf16kv": 33,
+        "b200-triton-w8a16-bf16kv": 16,
+        "b200-triton-nvfp4-bf16kv": 75,
+        "b200-triton-bf16-fp8kv": 27,
+        "b200-triton-bf16-int4kv": 34,
+        "sm120-triton-bf16-bf16kv": 87,
+        "sm120-flashinfer-bf16-bf16kv": 10,
+        "sm120-fa2-bf16-bf16kv": 16,
+        "sm120-triton-fp8-bf16kv": 33,
+        "sm120-triton-w8a16-bf16kv": 17,
+        "sm120-triton-awq-bf16kv": 51,
+        "sm120-triton-bf16-fp8kv": 14,
+        "sm120-triton-bf16-int4kv": 37
+      }
+    },
+    {
+      "id": "sp04",
+      "label": "SP04 · 1,535 assistant-output positions",
+      "positions": 1535,
+      "default_baseline": "h200-triton-bf16-bf16kv",
+      "default_comparisons": [
+        "b200-triton-bf16-bf16kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm121-triton-bf16-bf16kv"
+      ],
+      "default_range": 0,
+      "cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-nvfp4-fallback-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-nvfp4-r2-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
+      ],
+      "core": "data/sp04/core.js",
+      "run_root": "data/sp04/runs",
+      "branch_root": "data/sp04/branches",
+      "branch_cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv"
+      ],
+      "branch_positions": 64,
+      "branch_paths": 363,
+      "branch_counts": {
+        "h200-triton-bf16-bf16kv": 33,
+        "h200-flashinfer-bf16-bf16kv": 5,
+        "h200-fa2-bf16-bf16kv": 1,
+        "h200-triton-fp8-bf16kv": 16,
+        "h200-triton-w8a16-bf16kv": 8,
+        "h200-triton-bf16-fp8kv": 14,
+        "h200-triton-bf16-int4kv": 15,
+        "b200-triton-bf16-bf16kv": 51,
+        "b200-flashinfer-bf16-bf16kv": 5,
+        "b200-fa2-bf16-bf16kv": 3,
+        "b200-triton-fp8-bf16kv": 15,
+        "b200-triton-w8a16-bf16kv": 3,
+        "b200-triton-nvfp4-bf16kv": 31,
+        "b200-triton-bf16-fp8kv": 16,
+        "b200-triton-bf16-int4kv": 18,
+        "sm120-triton-bf16-bf16kv": 44,
+        "sm120-flashinfer-bf16-bf16kv": 6,
+        "sm120-fa2-bf16-bf16kv": 4,
+        "sm120-triton-fp8-bf16kv": 13,
+        "sm120-triton-w8a16-bf16kv": 7,
+        "sm120-triton-awq-bf16kv": 28,
+        "sm120-triton-bf16-fp8kv": 17,
+        "sm120-triton-bf16-int4kv": 10
+      }
+    },
+    {
+      "id": "sp06",
+      "label": "SP06 · 4,339 assistant-output positions",
+      "positions": 4339,
+      "default_baseline": "h200-triton-bf16-bf16kv",
+      "default_comparisons": [
+        "b200-triton-bf16-bf16kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm121-triton-bf16-bf16kv"
+      ],
+      "default_range": 0,
+      "cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-nvfp4-fallback-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-nvfp4-r2-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
+      ],
+      "core": "data/sp06/core.js",
+      "run_root": "data/sp06/runs",
+      "branch_root": "data/sp06/branches",
+      "branch_cases": [
+        "h200-triton-bf16-bf16kv",
+        "h200-flashinfer-bf16-bf16kv",
+        "h200-fa2-bf16-bf16kv",
+        "h200-triton-fp8-bf16kv",
+        "h200-triton-w8a16-bf16kv",
+        "h200-triton-bf16-fp8kv",
+        "h200-triton-bf16-int4kv",
+        "b200-triton-bf16-bf16kv",
+        "b200-flashinfer-bf16-bf16kv",
+        "b200-fa2-bf16-bf16kv",
+        "b200-triton-fp8-bf16kv",
+        "b200-triton-w8a16-bf16kv",
+        "b200-triton-nvfp4-bf16kv",
+        "b200-triton-bf16-fp8kv",
+        "b200-triton-bf16-int4kv",
+        "sm120-triton-bf16-bf16kv",
+        "sm120-flashinfer-bf16-bf16kv",
+        "sm120-fa2-bf16-bf16kv",
+        "sm120-triton-fp8-bf16kv",
+        "sm120-triton-w8a16-bf16kv",
+        "sm120-triton-awq-bf16kv",
+        "sm120-triton-bf16-fp8kv",
+        "sm120-triton-bf16-int4kv"
+      ],
+      "branch_positions": 306,
+      "branch_paths": 1824,
+      "branch_counts": {
+        "h200-triton-bf16-bf16kv": 182,
+        "h200-flashinfer-bf16-bf16kv": 27,
+        "h200-fa2-bf16-bf16kv": 26,
+        "h200-triton-fp8-bf16kv": 94,
+        "h200-triton-w8a16-bf16kv": 38,
+        "h200-triton-bf16-fp8kv": 61,
+        "h200-triton-bf16-int4kv": 84,
+        "b200-triton-bf16-bf16kv": 235,
+        "b200-flashinfer-bf16-bf16kv": 24,
+        "b200-fa2-bf16-bf16kv": 24,
+        "b200-triton-fp8-bf16kv": 69,
+        "b200-triton-w8a16-bf16kv": 39,
+        "b200-triton-nvfp4-bf16kv": 140,
+        "b200-triton-bf16-fp8kv": 57,
+        "b200-triton-bf16-int4kv": 100,
+        "sm120-triton-bf16-bf16kv": 213,
+        "sm120-flashinfer-bf16-bf16kv": 28,
+        "sm120-fa2-bf16-bf16kv": 23,
+        "sm120-triton-fp8-bf16kv": 79,
+        "sm120-triton-w8a16-bf16kv": 35,
+        "sm120-triton-awq-bf16kv": 135,
+        "sm120-triton-bf16-fp8kv": 24,
+        "sm120-triton-bf16-int4kv": 87
+      }
+    }
+  ],
+  "url_contract": "#dataset=ID&baseline=CASE&runs=CASE[,CASE...]&range=all|INDEX&ties=RULE"
+}

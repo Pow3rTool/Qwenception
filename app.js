@@ -566,7 +566,7 @@
       badges.append(el(
         "span",
         `badge${changed ? " bad" : ""}`,
-        changed ? "base winner ✕" : "base winner ✓",
+        changed ? "baseline match ✕" : "baseline match ✓",
       ));
     }
     card.append(badges);

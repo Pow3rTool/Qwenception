@@ -23,13 +23,13 @@ present.
 - All retained outputs in the selected prompt dataset are shown together by
   default, with explicit output-boundary dividers. A deep link can still select
   one exact output range for reproducibility.
-- 3,179 recursive futures in 92 static branch shards. Every eligible P0/P1
-  pair among H200, B200, and SM120 has both sides captured.
-- SM121 one-step logits are included, but its matching recursive branch battery
-  could not be captured. The UI labels those lanes `one-step only` rather than
-  inferring a future from another platform.
-- A frozen 100-token branch policy: 512 balanced tool envelopes, 173 malformed
-  structures, 147 prose/no completed tool envelope, and 2,347
+- 4,680 recursive futures in 128 static branch shards. Every eligible P0/P1
+  pair among H200, B200, SM120, and SM121 has both sides captured.
+- The 1,501 SM121 futures retain their exact GB10 runtime and per-case primary
+  kernel-cache provenance in the viewer instead of borrowing another platform's
+  continuation.
+- A frozen 100-token branch policy: 748 balanced tool envelopes, 257 malformed
+  structures, 226 prose/no completed tool envelope, and 3,449
   incomplete/indecisive paths at the cap.
 
 Counterfactual tool calls were structurally inspected but never executed. The
@@ -83,8 +83,8 @@ the declared rolling `vllm/vllm-openai:nightly-aarch64` image, vLLM
 `0.26.1rc1.dev1219+g46638857f`, and CUDA 13.0. The hosting platform did not
 expose its container daemon for an independent image-digest inspection. Do not
 read an SM121 comparison as a hardware-only substitution against the pinned
-x86 cells. Its matching recursive branch battery is also absent from this
-release.
+x86 cells. Its recursive branch battery uses that same SM121 runtime
+coordinate and records each case's primary kernel-cache provenance.
 
 ## Run locally
 

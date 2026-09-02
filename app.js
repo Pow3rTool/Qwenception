@@ -159,6 +159,9 @@
         "baseline-future",
         branchCases.has(item.id) ? "100-token futures available" : "one-step logits only",
       ));
+      if (item.future_provenance) {
+        runtime.append(el("span", "baseline-provenance", item.future_provenance));
+      }
       const foot = el("span", "baseline-card-foot");
       foot.append(
         runtime,
@@ -250,7 +253,10 @@
       );
       const rationale = el("span", "scenario-rationale", entry.rationale || "Eligible comparison.");
       label.title = entry.rationale || item.label;
-      label.append(input, title, meta, coverage, rationale);
+      const provenance = item.future_provenance
+        ? el("span", "scenario-provenance", item.future_provenance)
+        : null;
+      label.append(input, title, meta, coverage, provenance, rationale);
       return label;
     }));
     elements["selection-count"].textContent =
@@ -428,6 +434,9 @@
           ? "RUNTIME · NOT EXECUTED / UNKNOWN"
           : "RUNTIME · no generated call"),
       );
+      if (item.future_provenance) {
+        badges.append(el("span", "future-provenance", item.future_provenance));
+      }
       const route = routeLabel(record.recorded_route_tool_comparison);
       if (route) badges.append(el("span", "future-route", route));
       if (record.extension_mismatch_step) {

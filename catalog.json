@@ -521,7 +521,7 @@
       "A measured Top-1 disagreement is a fork root, not proof that either winner is objectively correct.",
       "Length-limited 100-token branches are incomplete/indecisive, not failures.",
       "Generated tool calls were structurally inspected but never executed.",
-      "SM121 has one-step logits in this release, but no matching P0/P1 recursive branch capture."
+      "SM121 recursive futures use the documented ARM64 runtime and retain explicit cache/cross-worker state provenance; known non-repeatable states are measurements, not a single canonical GPU answer."
     ]
   },
   "default_dataset": "sp06",
@@ -997,6 +997,7 @@
       "weights": "BF16",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Hardware / runtime",
       "color": "#8e24aa",
       "datasets": [
@@ -1016,6 +1017,7 @@
       "weights": "BF16",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Attention backend",
       "color": "#ab47bc",
       "datasets": [
@@ -1035,6 +1037,7 @@
       "weights": "BF16",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Attention backend",
       "color": "#ce93d8",
       "datasets": [
@@ -1054,6 +1057,7 @@
       "weights": "Official FP8",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Weight precision",
       "color": "#d81b60",
       "datasets": [
@@ -1073,6 +1077,7 @@
       "weights": "W8A16",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Weight precision",
       "color": "#c2185b",
       "datasets": [
@@ -1092,6 +1097,7 @@
       "weights": "AWQ W4A16",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Weight precision",
       "color": "#ad1457",
       "datasets": [
@@ -1111,6 +1117,7 @@
       "weights": "Mixed FP8/NVFP4",
       "kv_cache": "BF16",
       "runtime": "rolling ARM64 · cold state 1",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "Cold-start state",
       "color": "#f4511e",
       "notes": "One of two complete but non-bitwise-repeatable cold-start states.",
@@ -1151,6 +1158,7 @@
       "weights": "BF16",
       "kv_cache": "FP8",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "KV precision",
       "color": "#6d4c41",
       "datasets": [
@@ -1170,6 +1178,7 @@
       "weights": "BF16",
       "kv_cache": "INT4 per-token/head",
       "runtime": "rolling ARM64",
+      "future_provenance": "suffixes: cross-worker · retained cache state · state-sensitive",
       "intervention": "KV precision",
       "color": "#8d6e63",
       "datasets": [
@@ -1254,10 +1263,19 @@
         "sm120-triton-w8a16-bf16kv",
         "sm120-triton-awq-bf16kv",
         "sm120-triton-bf16-fp8kv",
-        "sm120-triton-bf16-int4kv"
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
       ],
-      "branch_positions": 24,
-      "branch_paths": 168,
+      "branch_positions": 27,
+      "branch_paths": 237,
       "branch_counts": {
         "h200-triton-bf16-bf16kv": 16,
         "h200-flashinfer-bf16-bf16kv": 2,
@@ -1281,7 +1299,16 @@
         "sm120-triton-w8a16-bf16kv": 5,
         "sm120-triton-awq-bf16kv": 14,
         "sm120-triton-bf16-fp8kv": 4,
-        "sm120-triton-bf16-int4kv": 10
+        "sm120-triton-bf16-int4kv": 10,
+        "sm121-triton-bf16-bf16kv": 21,
+        "sm121-flashinfer-bf16-bf16kv": 1,
+        "sm121-fa2-bf16-bf16kv": 3,
+        "sm121-triton-fp8-bf16kv": 6,
+        "sm121-triton-w8a16-bf16kv": 3,
+        "sm121-triton-awq-bf16kv": 11,
+        "sm121-triton-nvfp4-r1-bf16kv": 13,
+        "sm121-triton-bf16-fp8kv": 3,
+        "sm121-triton-bf16-int4kv": 8
       }
     },
     {
@@ -1357,10 +1384,19 @@
         "sm120-triton-w8a16-bf16kv",
         "sm120-triton-awq-bf16kv",
         "sm120-triton-bf16-fp8kv",
-        "sm120-triton-bf16-int4kv"
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
       ],
-      "branch_positions": 132,
-      "branch_paths": 824,
+      "branch_positions": 141,
+      "branch_paths": 1197,
       "branch_counts": {
         "h200-triton-bf16-bf16kv": 83,
         "h200-flashinfer-bf16-bf16kv": 11,
@@ -1384,7 +1420,16 @@
         "sm120-triton-w8a16-bf16kv": 17,
         "sm120-triton-awq-bf16kv": 51,
         "sm120-triton-bf16-fp8kv": 14,
-        "sm120-triton-bf16-int4kv": 37
+        "sm120-triton-bf16-int4kv": 37,
+        "sm121-triton-bf16-bf16kv": 121,
+        "sm121-flashinfer-bf16-bf16kv": 11,
+        "sm121-fa2-bf16-bf16kv": 12,
+        "sm121-triton-fp8-bf16kv": 35,
+        "sm121-triton-w8a16-bf16kv": 19,
+        "sm121-triton-awq-bf16kv": 51,
+        "sm121-triton-nvfp4-r1-bf16kv": 66,
+        "sm121-triton-bf16-fp8kv": 24,
+        "sm121-triton-bf16-int4kv": 34
       }
     },
     {
@@ -1460,10 +1505,19 @@
         "sm120-triton-w8a16-bf16kv",
         "sm120-triton-awq-bf16kv",
         "sm120-triton-bf16-fp8kv",
-        "sm120-triton-bf16-int4kv"
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
       ],
-      "branch_positions": 64,
-      "branch_paths": 363,
+      "branch_positions": 70,
+      "branch_paths": 539,
       "branch_counts": {
         "h200-triton-bf16-bf16kv": 33,
         "h200-flashinfer-bf16-bf16kv": 5,
@@ -1487,7 +1541,16 @@
         "sm120-triton-w8a16-bf16kv": 7,
         "sm120-triton-awq-bf16kv": 28,
         "sm120-triton-bf16-fp8kv": 17,
-        "sm120-triton-bf16-int4kv": 10
+        "sm120-triton-bf16-int4kv": 10,
+        "sm121-triton-bf16-bf16kv": 61,
+        "sm121-flashinfer-bf16-bf16kv": 3,
+        "sm121-fa2-bf16-bf16kv": 4,
+        "sm121-triton-fp8-bf16kv": 17,
+        "sm121-triton-w8a16-bf16kv": 4,
+        "sm121-triton-awq-bf16kv": 30,
+        "sm121-triton-nvfp4-r1-bf16kv": 35,
+        "sm121-triton-bf16-fp8kv": 13,
+        "sm121-triton-bf16-int4kv": 9
       }
     },
     {
@@ -1563,10 +1626,19 @@
         "sm120-triton-w8a16-bf16kv",
         "sm120-triton-awq-bf16kv",
         "sm120-triton-bf16-fp8kv",
-        "sm120-triton-bf16-int4kv"
+        "sm120-triton-bf16-int4kv",
+        "sm121-triton-bf16-bf16kv",
+        "sm121-flashinfer-bf16-bf16kv",
+        "sm121-fa2-bf16-bf16kv",
+        "sm121-triton-fp8-bf16kv",
+        "sm121-triton-w8a16-bf16kv",
+        "sm121-triton-awq-bf16kv",
+        "sm121-triton-nvfp4-r1-bf16kv",
+        "sm121-triton-bf16-fp8kv",
+        "sm121-triton-bf16-int4kv"
       ],
-      "branch_positions": 306,
-      "branch_paths": 1824,
+      "branch_positions": 325,
+      "branch_paths": 2707,
       "branch_counts": {
         "h200-triton-bf16-bf16kv": 182,
         "h200-flashinfer-bf16-bf16kv": 27,
@@ -1590,7 +1662,16 @@
         "sm120-triton-w8a16-bf16kv": 35,
         "sm120-triton-awq-bf16kv": 135,
         "sm120-triton-bf16-fp8kv": 24,
-        "sm120-triton-bf16-int4kv": 87
+        "sm120-triton-bf16-int4kv": 87,
+        "sm121-triton-bf16-bf16kv": 264,
+        "sm121-flashinfer-bf16-bf16kv": 33,
+        "sm121-fa2-bf16-bf16kv": 38,
+        "sm121-triton-fp8-bf16kv": 72,
+        "sm121-triton-w8a16-bf16kv": 53,
+        "sm121-triton-awq-bf16kv": 142,
+        "sm121-triton-nvfp4-r1-bf16kv": 146,
+        "sm121-triton-bf16-fp8kv": 52,
+        "sm121-triton-bf16-int4kv": 83
       }
     }
   ],
